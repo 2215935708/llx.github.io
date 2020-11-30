@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        a:hover {
+            color: rgb(41, 137, 175);
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .box {
+            width: 320px;
+            height: 450px;
+            margin: 0px;
+            left: 230px;
+            border: 1px solid white;
+            position: relative;
+        }.big {
+            width: 480px;
+            height: 500px;
+            position: absolute;
+            top: 0;
+            left: 320px;
+            border: 1px solid  rgb(15, 223, 238);
+            overflow: hidden;
+            display: none;
+        }
+
+        .big img {
+            position: relative;
+        }
+
+        .mask {
+            width: 160px;
+            height: 225px;
+            background: rgba(16, 212, 203, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+
+        .small {
+            position: relative;
+        }
+
+        table {
+            width: 800px;
+            height: 800px;
+            border-color: rgb(18, 49, 224);
+            border-radius: 11px 11px 11px 11px;
+            overflow: scroll;
+            font-family: cursive;
+            font-style: italic;
+            margin: 30px 0 0 280px;
+        }
+#aa{
+    font-size: 25px;
+    color: brown;
+}
+#bb{
+    text-align: center;
+    font-size: 25px;
+    color: brown;
+}
+#cc{
+    font-size: 25px;
+    color: brown;
+}
+#dd{
+    font-size: 20px;
+    color: brown;
+}
+header{
+    text-align: center;
+}
+#tt{
+    text-align: center;
+    color: tomato;
+}
+    </style>
+</head>
+<body>
+
+        <header>
+            通信1903班林林兴，201916180313，是一个喜欢运动的阳光boy<p></p>
+            前一位陈浩天201916180312，后一位谢子明201916180314<p><p>
+            <caption>介绍最喜欢的美食</caption></header>
+        <table border="5px" cellspacing="0">
+            <tr>
+                <td id="tt" colspan="3">箭头移到下方图片，能放大哦<div id="box" class="box">
+                        <div class="small">
+                            <img src="fotiaoqiang.jpg" alt="" width="320px" height="450px">
+                            <div class="mask" style="display:none;left: 134px;top: 0px;"></div>
+                        </div>
+                        <div class="big" style="display:none;">
+                            <img src="fotiaoqiang.jpg" alt="" style="left:-263px;top: 0px;width: 640px;">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="cc">对佛跳墙的介绍</td>
+                <td id="dd">佛跳墙，又名满坛香、福寿全，是福建福州的当地名菜，属闽菜系。相传，它是在清道光年间由福州聚春园菜馆老板郑春发研制出来的。
+                    佛跳墙富含营养，可促进发育，美容，延缓衰老，增强免疫力，乃进补佳品。制作这道美食，工序十分繁琐。佛跳墙的原料有十几种之多，鲍鱼、海参、鱼唇、牦牛皮胶、杏鲍菇、蹄筋、花菇、墨鱼、瑶柱、鹌鹑蛋等。要充分体现每一种食材的口味和特点需要先将这十几种食材分别独立制作成一道菜，
+                    再汇聚到一起，加入高汤和绍兴酒，文火煨制十几个小时以上，这种味道才能真正达到醇厚的特点。佛跳墙选用多种海味产品和少许肉类原料，盛入特制瓷坛内长煨时间制而成，
+                    荤香可口、不油不腻、补肾、补血、滋补强身，有很高的食疗价值。</td>
+            </tr>
+            <tr>
+                <td id="aa">链接在右边👉</td>
+                <td id="bb"><a href="https://detail.tmall.com/item.htm?id=627420767518&ali_refid=a3_430673_1006:1104355413:N:2zdwcciI8w/5xgbiD4gOdQ==:e777d2abec7f18d863d2cd8f8c3c7208&ali_trackid=1_e777d2abec7f18d863d2cd8f8c3c7208&spm=a2e0b.20350158.31919782.4&skuId=4445495524728">我是链接</a></td>
+            </tr>
+    </table>
+    <script>
+        var box = document.getElementById('box');
+            var smallBox = box.children[0];
+            var smallImage = smallBox.children[0];
+            var mask = smallBox.children[1];
+            var bigBox = box.children[1];
+            var bigImage = bigBox.children[0];
+
+            function getPage(ev) {
+                return {
+                    pageX: ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft),
+                    pageY: ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop)
+                }
+            }
+            smallBox.onmouseenter = function () {
+                mask.style.display = 'block';
+                bigBox.style.display = 'block';
+            }
+
+
+            smallBox.onmouseleave = function () {
+                mask.style.display = 'none';
+                bigBox.style.display = 'none';
+            }
+
+
+            smallBox.onmousemove = function (ev) {
+                ev = ev || window.event;
+                var x = getPage(ev).pageX - box.offsetLeft;
+                var y = getPage(ev).pageY - box.offsetTop;
+
+
+                x -= mask.offsetWidth / 2;
+                y -= mask.offsetHeight / 2;
+
+
+                x = x < 0 ? 0 : x;
+                y = y < 0 ? 0 : y;
+
+                var maxX = smallBox.offsetWidth - mask.offsetWidth;
+                var maxY = smallBox.offsetHeight - mask.offsetHeight;
+                x = x > maxX ? maxX : x;
+                y = y > maxY ? maxY : y;
+
+                mask.style.left = x + 'px';
+                mask.style.top = y + 'px';
+
+                var bigMaxX = bigImage.offsetWidth - bigBox.offsetWidth;
+                var bigMaxY = bigImage.offsetHeight - bigBox.offsetHeight;
+
+                var bigImageX = x * bigMaxX / maxX;
+                var bigImageY = y * bigMaxY / maxY;
+
+                bigImage.style.left = -bigImageX + 'px';
+                bigImage.style.top = -bigImageY + 'px';
+            }
+    </script>
+</html>
